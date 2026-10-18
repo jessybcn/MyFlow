@@ -1,75 +1,119 @@
-# React + TypeScript + Vite
+# MyFlow
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+MyFlow is a task management application built with React and TypeScript. It helps users organize their tasks using a Kanban board with three statuses: To Do, In Progress, and Done.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Each user has a personal account and can manage their own tasks.
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- User registration and login
+- Secure password hashing
+- Session-based authentication
+- Create, update, and delete tasks
+- Change task status using a dropdown menu
+- Separate tasks for each user
+- Persistent data storage using SQLite
 
-## Expanding the ESLint configuration
+## Technologies
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React
+- TypeScript
+- Node.js
+- Express
+- SQLite with better-sqlite3
+- Vitest
+- CSS
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation and Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Prerequisites
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js
+- npm
 
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/jessybcn/MyFlow.git
+cd MyFlow
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install frontend dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
 ```
+
+### 3. Install backend dependencies
+
+```bash
+cd server
+npm install
+```
+
+### 4. Start the backend
+
+From the `server` directory, run:
+
+```bash
+npx tsx index.ts
+```
+
+The backend runs at:
+
+`http://localhost:3000`
+
+### 5. Start the frontend
+
+Open a second terminal in the project root directory and run:
+
+```bash
+npm run dev
+```
+
+Open the local URL displayed by Vite in your browser.
+
+## Database
+
+MyFlow uses SQLite to store users and tasks. The database is initialized automatically when the backend starts.
+
+## Environment Variables
+
+The backend supports the `SESSION_SECRET` environment variable for session security.
+
+For local development, a development fallback is configured. For production, set a strong secret through the hosting provider's environment settings. Never commit secrets to the repository.
+
+## Testing
+
+Run the frontend tests from the project root:
+
+```bash
+npm run test -- --run
+```
+
+Run the frontend production build:
+
+```bash
+npm run build
+```
+
+Check the backend TypeScript code:
+
+```bash
+cd server
+npx tsc --noEmit
+```
+
+## Deployment
+
+## Deployment
+
+The application has not been deployed yet.
+## Future Improvements
+
+- Deploy the application to a hosting platform.
+- Add drag-and-drop functionality to the Kanban board.
+- Improve task filtering and search.
+- Add task due dates and priorities.
